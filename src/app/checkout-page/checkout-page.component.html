@@ -1,12 +1,16 @@
-<div class="cart-item" *ngFor="let item of items;">
-  <div>
-    <span>{{ item.name }}</span>
-    <span>{{ item.price | currency }}</span>
+<h3>My Cart</h3>
+<div *ngIf="items.length == 0; else elseBlock">Cart is empty.</div>
+<ng-template #elseBlock>
+    <div class="cart-item" *ngFor="let item of items;">
+    <div>
+      <span>{{ item.name }}</span>
+      <span>{{ item.price | currency }}</span>
+    </div>
   </div>
-</div>
+</ng-template>
 
-<app-shipping></app-shipping>
-<h2>{{totalCost | currency}}</h2>
+<app-shipping (selectedShipping)="onShippingSelect($event)"></app-shipping>
+<h2>{{totalCost + shippingCost | currency}}</h2>
 
 <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
 

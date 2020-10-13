@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 
@@ -38,6 +38,10 @@ export class CheckoutPageComponent implements OnInit {
     this.checkoutForm.reset();
 
     console.warn('Your order has been submitted', customerData);
+  }
+
+  onShippingSelect(shippingPrice){
+    this.shippingCost = shippingPrice;
   }
 
 }
